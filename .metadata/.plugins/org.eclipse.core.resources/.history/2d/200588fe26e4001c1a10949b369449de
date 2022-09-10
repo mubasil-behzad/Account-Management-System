@@ -1,0 +1,226 @@
+package Login_Sys;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.Point;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import java.awt.Font;
+
+public class Accessories extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel_1;
+	private ImageIcon icon_1,icon_2;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Accessories frame = new Accessories();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Accessories() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 1366, 768);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1340, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+		);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
+		scrollPane.setViewportView(panel);
+		
+		JPanel panel_3 = new JPanel();
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new MatteBorder(2, 2, 2, 0, (Color) new Color(0, 0, 0)));
+		panel_1.setBackground(Color.BLACK);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new MatteBorder(2, 2, 2, 0, (Color) new Color(0, 0, 0)));
+		panel_2.setBackground(new Color(135, 206, 235));
+		
+		panel_3.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 0, 85, 85);
+		ImageIcon icon =new ImageIcon(this.getClass().getResource("/acount_Manage.png"));
+		lblNewLabel.setIcon(icon);
+		panel_3.add(lblNewLabel);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new MatteBorder(2, 0, 2, 2, (Color) new Color(0, 0, 0)));
+		panel_4.setBackground(new Color(135, 206, 235));
+		
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(0, 0, 22, 20);
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			
+			int x=219,y=641;
+			public void mouseClicked(MouseEvent e) {
+				
+				if(x==219) {
+					panel_1.setSize(219, 626);
+					Thread th = new Thread(){
+						@Override
+						public void run() {
+							try {
+								for(int i=219;i>=0;i--) {
+									Thread.sleep(1);
+									panel_1.setSize(i, 641);
+									//panel_2.setLocation(panel_2.getLocation().x, panel_2.getLocation().y);
+									
+								}
+							}catch (Exception e1) {
+								JOptionPane.showMessageDialog(null, e1);
+							}
+						}
+					};th.start();
+					x=0;
+					if(x==0) {
+						lblNewLabel_1.setIcon(null);
+						lblNewLabel_1.setIcon(icon_1);
+						
+					}
+				}else{
+					panel_1.setSize(x, 626);
+					panel_1.show();
+					Thread th = new Thread(){
+						@Override
+						public void run() {
+							try {
+								for(int i=0;i<=219;i++) {
+									Thread.sleep(1);
+									panel_1.setSize(i, 641);
+								
+									//panel_2.setLocation(panel_2.getLocation().x, panel_2.getLocation().y);
+									
+								}
+							}catch (Exception e1) {
+								JOptionPane.showMessageDialog(null, e1);
+							}
+						}
+					};th.start();
+					x=219;
+					if(x==219) {
+						lblNewLabel_1.setIcon(null);
+						lblNewLabel_1.setIcon(icon_2);
+						
+					}
+					
+				}
+				
+			}
+		});
+		icon_1 =new ImageIcon(this.getClass().getResource("/O_C_arrow.png"));
+		icon_2 =new ImageIcon(this.getClass().getResource("/O_C_arrow_1.png"));
+		lblNewLabel_1.setIcon(icon_2);
+		
+		panel_2.setLayout(null);
+		
+		
+		//lblNewLabel_1.setVisible(false);
+		
+		panel_2.add(lblNewLabel_1);
+		ImageIcon icon_3 =new ImageIcon(this.getClass().getResource("/acount_Manage_2.png"));
+		panel_4.setLayout(null);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("PROFILE");
+		lblNewLabel_3.setForeground(Color.WHITE);
+		lblNewLabel_3.setBackground(Color.WHITE);
+		lblNewLabel_3.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(255,255,255)));
+		lblNewLabel_3.setFont(new Font("Arial Black", Font.BOLD, 25));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(0, 220, 219, 38);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("FEES");
+		lblNewLabel_3_1.setForeground(Color.WHITE);
+		lblNewLabel_3_1.setBackground(Color.WHITE);
+		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_1.setBorder(new MatteBorder(2, 0, 2, 0, (Color) new Color(255,255,255)));
+		lblNewLabel_3_1.setFont(new Font("Arial Black", Font.BOLD, 25));
+		lblNewLabel_3_1.setBounds(0, 259, 219, 38);
+		panel_1.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(icon_3);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 219, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_2))
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(27)
+							.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE))
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(163)
+							.addComponent(lblNewLabel_2))
+						.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+						.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)))
+		);
+		panel.setLayout(gl_panel);
+		
+		
+		contentPane.setLayout(gl_contentPane);
+	}
+}

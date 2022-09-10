@@ -1,0 +1,146 @@
+package Login_Sys;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.Point;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Accessories extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Accessories frame = new Accessories();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Accessories() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 1366, 768);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1340, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+		);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(51, 51, 204));
+		
+		JPanel panel_3 = new JPanel();
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(51, 51, 204));
+		
+		panel_3.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 0, 85, 85);
+		ImageIcon icon =new ImageIcon(this.getClass().getResource("/acount_Manage.png"));
+		lblNewLabel.setIcon(icon);
+		panel_3.add(lblNewLabel);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(0, 0, 0));
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(0, 0, 22, 20);
+		int x=219;
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(x==219) {
+					panel_1.setSize(219, 626);
+					Thread th = new Thread(){
+						
+						public void run() {
+							try {
+								for(int i=219;i>0;i--) {
+									Thread.sleep(1);
+									panel_1.setSize(i, 641);
+									//panel_2.Location =new Point(panel_2.location().x-i,panel_2.location().y);
+									panel_2.setSize(0, 626);
+									Thread.sleep(10);
+								}
+							}catch (Exception e1) {
+								JOptionPane.showMessageDialog(null, e1);
+							}
+						}
+					};th.start();
+				}
+			}
+		});
+		ImageIcon icon_1 =new ImageIcon(this.getClass().getResource("/O_C_arrow.png"));
+		lblNewLabel_1.setIcon(icon_1);
+		panel_2.setLayout(null);
+		panel_2.add(lblNewLabel_1);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGap(27)
+							.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 1092, Short.MAX_VALUE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap(1090, Short.MAX_VALUE))))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addComponent(panel_3, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+					.addGap(6)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+						.addComponent(panel_4, GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+						.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 626, GroupLayout.PREFERRED_SIZE)))
+		);
+		panel.setLayout(gl_panel);
+		contentPane.setLayout(gl_contentPane);
+	}
+}

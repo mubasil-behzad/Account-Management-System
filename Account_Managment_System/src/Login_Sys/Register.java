@@ -1,0 +1,243 @@
+package Login_Sys;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import java.awt.Cursor;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
+
+public class Register extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField F_name;
+	private JTextField L_name;
+	private JTextField User_N;
+	private JPasswordField Pass_W;
+	private Connection conn=null;
+	private JTextField email;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Register frame = new Register();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e);
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Register() {
+		
+		setTitle("Register ");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 616, 468);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		try {
+			String url = "jdbc:mysql://127.0.0.1:3306/account_managment_system";
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			conn = DriverManager.getConnection(url,"root","");
+			
+		} catch (Exception E) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Something Went Worng");
+			//System.out.println(E);
+		}
+		
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 580, 407);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(79, 121, 422, 7);
+		panel.add(separator);
+		
+		JLabel lblNewLabel = new JLabel("First Name");
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(21, 155, 76, 28);
+		panel.add(lblNewLabel);
+		
+		F_name = new JTextField();
+		F_name.setBounds(123, 155, 135, 28);
+		panel.add(F_name);
+		F_name.setColumns(10);
+		
+		JLabel lblLastName = new JLabel("Last Name");
+		lblLastName.setForeground(Color.BLACK);
+		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblLastName.setBounds(282, 155, 76, 28);
+		panel.add(lblLastName);
+		
+		L_name = new JTextField();
+		L_name.setColumns(10);
+		L_name.setBounds(403, 155, 135, 28);
+		panel.add(L_name);
+		
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setForeground(Color.BLACK);
+		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUsername.setBounds(21, 219, 76, 28);
+		panel.add(lblUsername);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setForeground(Color.BLACK);
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPassword.setBounds(282, 219, 76, 28);
+		panel.add(lblPassword);
+		
+		JLabel lblEmail = new JLabel("Email");
+		lblEmail.setForeground(Color.BLACK);
+		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblEmail.setBounds(21, 279, 76, 28);
+		panel.add(lblEmail);
+		
+		email = new JTextField();
+		email.setToolTipText("@gmail.com");
+		email.setColumns(10);
+		email.setBounds(123, 279, 135, 28);
+		panel.add(email);
+		
+		User_N = new JTextField();
+		User_N.setColumns(10);
+		User_N.setBounds(123, 219, 135, 28);
+		panel.add(User_N);
+		
+		Pass_W = new JPasswordField();
+		Pass_W.setBounds(403, 219, 135, 28);
+		panel.add(Pass_W);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(79, 318, 422, 7);
+		panel.add(separator_1);
+		
+		JButton btnNewButton = new JButton("REGISTER");
+		btnNewButton.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+		});
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String u_name=User_N.getText();
+				String P_word=Pass_W.getText(); 
+				String First_name=F_name.getText();
+				String Last_name=L_name.getText();
+				String Email=email.getText();
+				
+				String sql = "INSERT INTO `register`(`FirstName`, `LastName`, `username`, `newpassword`, `email`) VALUES (?,?,?,?,?)";
+				try {
+					PreparedStatement preparedStatement =conn.prepareStatement(sql);
+					preparedStatement.setString(1, First_name);
+					preparedStatement.setString(2, Last_name);
+					if(!u_name.isEmpty()){
+						preparedStatement.setString(3, u_name);
+					}
+					if(!P_word.isEmpty()){
+						preparedStatement.setString(4, P_word);
+					}
+					if(!Email.isEmpty() && Email.endsWith("@gmail.com")){
+						preparedStatement.setString(5, Email);
+					}
+					int rows = preparedStatement.executeUpdate();
+				
+					if(rows>0){
+						JOptionPane.showMessageDialog(null, "Register Successfully..!");
+						Login_System login =new Login_System();
+						login.main(null);
+						setVisible(false);
+						conn.close();
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1);
+				}
+			}
+		
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(403, 351, 89, 28);
+		panel.add(btnNewButton);
+		
+		JButton btnReset = new JButton("RESET");
+		btnReset.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				btnReset.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+		});
+		btnReset.setForeground(Color.BLACK);
+		btnReset.setBackground(Color.LIGHT_GRAY);
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				User_N.setText(null);
+				Pass_W.setText(null);
+				F_name.setText(null);
+				L_name.setText(null);
+				email.setText(null);
+			}
+		});
+		btnReset.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnReset.setBounds(123, 351, 89, 28);
+		panel.add(btnReset);
+		
+		JLabel lblNewLabel_1 = new JLabel("REGISTRATION");
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setFont(new Font("Impact", Font.BOLD, 40));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(137, 43, 305, 52);
+		panel.add(lblNewLabel_1);
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("/5.png"));
+		
+		
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(0, 0, 580, 407);
+		lblNewLabel_2.setIcon(icon);
+		panel.add(lblNewLabel_2);
+	}
+
+}

@@ -1,0 +1,188 @@
+package Login_Sys;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
+
+public class Change_Username extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField email;
+	private JTextField N_user;
+	private JTextField C_user;
+	private Connection conn=null;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Change_Username frame = new Change_Username();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e);
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Change_Username() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 616, 468);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		try {
+			String url = "jdbc:mysql://127.0.0.1:3306/account_managment_system";
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			conn = DriverManager.getConnection(url,"root","");
+			
+		} catch (Exception E) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Something Went Worng");
+			//System.out.println(E);
+		}
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(10, 11, 580, 407);
+		contentPane.add(panel);
+		
+		JLabel lblNewLabel_1 = new JLabel("FORGET USERNAME");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setFont(new Font("Impact", Font.BOLD, 40));
+		lblNewLabel_1.setBounds(118, 43, 343, 52);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Email");
+		lblNewLabel_2.setForeground(Color.BLACK);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2.setBounds(87, 171, 76, 28);
+		panel.add(lblNewLabel_2);
+		
+		email = new JTextField();
+		email.setColumns(10);
+		email.setBounds(247, 171, 135, 28);
+		panel.add(email);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("New Username");
+		lblNewLabel_2_1.setForeground(Color.BLACK);
+		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_1.setBounds(87, 243, 111, 28);
+		panel.add(lblNewLabel_2_1);
+		
+		N_user = new JTextField();
+		N_user.setColumns(10);
+		N_user.setBounds(247, 243, 135, 28);
+		panel.add(N_user);
+		
+		JLabel lblNewLabel_2_2 = new JLabel("Confirm Username");
+		lblNewLabel_2_2.setForeground(Color.BLACK);
+		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_2.setBounds(87, 315, 135, 28);
+		panel.add(lblNewLabel_2_2);
+		
+		C_user = new JTextField();
+		C_user.setColumns(10);
+		C_user.setBounds(247, 315, 135, 28);
+		panel.add(C_user);
+		
+		JButton btnNewButton = new JButton("Update");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String Email = email.getText();
+				String new_u = N_user.getText();
+				String confirm_u = C_user.getText();
+				int flag=0;
+				try {
+					String sql = "SELECT `P_Email` FROM `teachers` WHERE 1";
+					Statement statement=  conn.createStatement();
+					ResultSet search = statement.executeQuery(sql);
+					while(search.next()) {
+						String Demail = search.getString("P_Email");
+						if(Demail.equals(Email) && !Email.isBlank())
+						{
+							flag=1;
+							try {
+								String sql_1 = "UPDATE `teachers` SET `Username`=? WHERE  P_Email=?";
+								PreparedStatement preparedStatement = conn.prepareStatement(sql_1);
+								if(new_u.equals(confirm_u) && !new_u.isBlank())
+								{
+									preparedStatement.setString(1, new_u);
+									preparedStatement.setString(2, Email);
+								}
+								int rows = preparedStatement.executeUpdate();
+								
+								if(rows>0){
+									JOptionPane.showMessageDialog(null, "Update Successfully..!");
+									Teacher_Login login =new Teacher_Login();
+									login.setVisible(true);
+									setVisible(false);
+								}
+								
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								JOptionPane.showMessageDialog(null, e1);
+							}
+							
+						}	
+					}
+					if(flag==0) {
+						JOptionPane.showMessageDialog(null, "Invalid Email..!");
+						email.setText(null);
+						N_user.setText(null);
+						C_user.setText(null);
+					}
+					conn.close();
+				}catch (Exception e1){
+					
+					JOptionPane.showMessageDialog(null,e1);
+				}
+			}
+		});
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
+		btnNewButton.setBounds(451, 357, 86, 28);
+		panel.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("/5.png"));
+		lblNewLabel.setIcon(icon);
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setBounds(0, 0, 580, 407);
+		panel.add(lblNewLabel);
+	}
+
+}

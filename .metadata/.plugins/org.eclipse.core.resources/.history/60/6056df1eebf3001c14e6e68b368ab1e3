@@ -1,0 +1,325 @@
+package Login_Sys;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.border.MatteBorder;
+import java.awt.Font;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
+import javax.swing.JSeparator;
+
+public class T_Accessories extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					T_Accessories frame = new T_Accessories();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e);
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public T_Accessories() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 1366, 768);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 0, 1340, 719);
+		contentPane.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		panel.setLayout(null);
+		ImageIcon icon_3 =new ImageIcon(this.getClass().getResource("/acount_Manage_2.png"));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBorder(new MatteBorder(2, 2, 2, 0, (Color) new Color(0, 0, 0)));
+		panel_1.setBackground(new Color(0, 191, 255));
+		panel_1.setBounds(0, 91, 219, 626);
+		panel.add(panel_1);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("");
+		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_1.setBounds(0, 0, 219, 209);
+		panel_1.add(lblNewLabel_2_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("PROFILE");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setForeground(Color.WHITE);
+		lblNewLabel_3.setFont(new Font("Arial Black", Font.BOLD, 25));
+		lblNewLabel_3.setBorder(new MatteBorder(2, 0, 0, 0, (Color) new Color(255,255,255)));
+		lblNewLabel_3.setBackground(Color.WHITE);
+		lblNewLabel_3.setBounds(1, 289, 218, 38);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("FEES");
+		lblNewLabel_3_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3_1.setForeground(Color.WHITE);
+		lblNewLabel_3_1.setFont(new Font("Arial Black", Font.BOLD, 25));
+		lblNewLabel_3_1.setBorder(new MatteBorder(2, 0, 2, 0, (Color) new Color(255,255,255)));
+		lblNewLabel_3_1.setBackground(Color.WHITE);
+		lblNewLabel_3_1.setBounds(1, 328, 218, 38);
+		panel_1.add(lblNewLabel_3_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBorder(new MatteBorder(2, 2, 2, 0, (Color) new Color(0, 0, 0)));
+		panel_2.setBackground(new Color(135, 206, 250));
+		panel_2.setBounds(219, 91, 29, 626);
+		panel.add(panel_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(0, 0, 22, 20);
+		panel_2.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setIcon(icon_3);
+		lblNewLabel_2.setBounds(0, 254, 219, 209);
+		panel.add(lblNewLabel_2);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new MatteBorder(2, 0, 2, 2, (Color) new Color(0, 0, 0)));
+		panel_3.setBounds(247, 91, 1091, 626);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JPanel panel_9_1 = new JPanel();
+		panel_9_1.setLayout(null);
+		panel_9_1.setBackground(new Color(135, 206, 250));
+		panel_9_1.setBounds(1002, 83, 22, 490);
+		panel_3.add(panel_9_1);
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setLayout(null);
+		panel_9.setBackground(new Color(135, 206, 250));
+		panel_9.setBounds(70, 83, 22, 490);
+		panel_3.add(panel_9);
+		
+		JPanel panel_10 = new JPanel();
+		panel_10.setBackground(new Color(135, 206, 250));
+		panel_10.setBounds(70, 565, 943, 17);
+		panel_3.add(panel_10);
+		
+		JPanel panel_5_1 = new JPanel();
+		panel_5_1.setLayout(null);
+		panel_5_1.setBackground(new Color(135, 206, 250));
+		panel_5_1.setBounds(78, 11, 930, 87);
+		panel_3.add(panel_5_1);
+		
+		textField = new JTextField();
+		textField.setForeground(Color.BLACK);
+		textField.setFont(new Font("Tahoma", Font.BOLD, 13));
+		textField.setColumns(10);
+		textField.setBounds(256, 27, 356, 26);
+		panel_5_1.add(textField);
+		
+		JLabel lblNewLabel_4_5 = new JLabel("Search Reg ID #");
+		lblNewLabel_4_5.setForeground(Color.BLACK);
+		lblNewLabel_4_5.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_5.setBounds(66, 27, 180, 26);
+		panel_5_1.add(lblNewLabel_4_5);
+		
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setBounds(611, 27, 33, 26);
+		panel_5_1.add(lblNewLabel_8);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(78, 68, 930, 505);
+		panel_3.add(tabbedPane);
+		
+		JPanel panel_4 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_4, null);
+		panel_4.setLayout(null);
+		
+		JPanel panel_4_1 = new JPanel();
+		panel_4_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_4_1.setBackground(new Color(135, 206, 250));
+		panel_4_1.setBounds(789, 96, 126, 129);
+		panel_4.add(panel_4_1);
+		panel_4_1.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_4_1.add(lblNewLabel, BorderLayout.CENTER);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBackground(new Color(0, 0, 128));
+		separator.setBounds(237, 68, 450, 10);
+		panel_4.add(separator);
+		
+		JLabel lblNewLabel_6 = new JLabel("PROFILE");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_6.setForeground(new Color(0, 0, 128));
+		lblNewLabel_6.setFont(new Font("Arial Black", Font.BOLD, 30));
+		lblNewLabel_6.setBounds(202, 11, 520, 76);
+		panel_4.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_4 = new JLabel("Name");
+		lblNewLabel_4.setForeground(Color.BLACK);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4.setBounds(25, 89, 118, 26);
+		panel_4.add(lblNewLabel_4);
+		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(153, 89, 159, 26);
+		panel_4.add(textField_1);
+		
+		JLabel lblNewLabel_4_8 = new JLabel("Username");
+		lblNewLabel_4_8.setForeground(Color.BLACK);
+		lblNewLabel_4_8.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_8.setBounds(25, 191, 118, 26);
+		panel_4.add(lblNewLabel_4_8);
+		
+		JLabel lblNewLabel_4_6 = new JLabel("Reg ID");
+		lblNewLabel_4_6.setForeground(Color.BLACK);
+		lblNewLabel_4_6.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_6.setBounds(25, 274, 118, 26);
+		panel_4.add(lblNewLabel_4_6);
+		
+		JLabel lblNewLabel_4_1 = new JLabel("Roll #");
+		lblNewLabel_4_1.setForeground(Color.BLACK);
+		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_1.setBounds(25, 357, 118, 26);
+		panel_4.add(lblNewLabel_4_1);
+		
+		JLabel lblNewLabel_4_3 = new JLabel("Email");
+		lblNewLabel_4_3.setForeground(Color.BLACK);
+		lblNewLabel_4_3.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_3.setBounds(25, 440, 118, 26);
+		panel_4.add(lblNewLabel_4_3);
+		
+		textField_2 = new JTextField();
+		textField_2.setEditable(false);
+		textField_2.setColumns(10);
+		textField_2.setBounds(149, 440, 159, 26);
+		panel_4.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setEditable(false);
+		textField_3.setColumns(10);
+		textField_3.setBounds(149, 357, 159, 26);
+		panel_4.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setEditable(false);
+		textField_4.setColumns(10);
+		textField_4.setBounds(149, 274, 159, 26);
+		panel_4.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setEditable(false);
+		textField_5.setColumns(10);
+		textField_5.setBounds(149, 191, 159, 26);
+		panel_4.add(textField_5);
+		
+		JLabel lblNewLabel_4_9 = new JLabel("Phone #");
+		lblNewLabel_4_9.setForeground(Color.BLACK);
+		lblNewLabel_4_9.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_9.setBounds(406, 191, 118, 26);
+		panel_4.add(lblNewLabel_4_9);
+		
+		JLabel lblNewLabel_4_2 = new JLabel("Deg/Dpt");
+		lblNewLabel_4_2.setForeground(Color.BLACK);
+		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_2.setBounds(406, 108, 118, 26);
+		panel_4.add(lblNewLabel_4_2);
+		
+		textField_6 = new JTextField();
+		textField_6.setEditable(false);
+		textField_6.setColumns(10);
+		textField_6.setBounds(534, 108, 159, 26);
+		panel_4.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setEditable(false);
+		textField_7.setColumns(10);
+		textField_7.setBounds(534, 191, 159, 26);
+		panel_4.add(textField_7);
+		
+		JLabel lblNewLabel_4_7 = new JLabel("Address");
+		lblNewLabel_4_7.setForeground(Color.BLACK);
+		lblNewLabel_4_7.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_7.setBounds(406, 274, 118, 26);
+		panel_4.add(lblNewLabel_4_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setEditable(false);
+		textField_8.setColumns(10);
+		textField_8.setBounds(534, 274, 159, 26);
+		panel_4.add(textField_8);
+		
+		textField_9 = new JTextField();
+		textField_9.setEditable(false);
+		textField_9.setColumns(10);
+		textField_9.setBounds(534, 357, 159, 26);
+		panel_4.add(textField_9);
+		
+		JLabel lblNewLabel_4_4 = new JLabel("Gender");
+		lblNewLabel_4_4.setForeground(Color.BLACK);
+		lblNewLabel_4_4.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_4.setBounds(406, 357, 118, 26);
+		panel_4.add(lblNewLabel_4_4);
+		
+		JLabel lblNewLabel_4_4_1 = new JLabel("Section");
+		lblNewLabel_4_4_1.setForeground(Color.BLACK);
+		lblNewLabel_4_4_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_4_4_1.setBounds(406, 440, 118, 26);
+		panel_4.add(lblNewLabel_4_4_1);
+		
+		textField_10 = new JTextField();
+		textField_10.setEditable(false);
+		textField_10.setColumns(10);
+		textField_10.setBounds(534, 440, 159, 26);
+		panel_4.add(textField_10);
+		
+		JPanel panel_5 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_5, null);
+		
+		JPanel panel_6 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_6, null);
+	}
+}

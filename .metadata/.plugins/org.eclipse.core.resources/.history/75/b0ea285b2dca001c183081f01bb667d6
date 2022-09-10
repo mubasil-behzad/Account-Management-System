@@ -1,0 +1,262 @@
+package Login_Sys;
+
+import java.awt.EventQueue;
+import java.sql.*;
+import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Cursor;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.SwingConstants;
+
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
+import java.awt.SystemColor;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JCheckBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+
+public class Login_System {
+
+	private JFrame frmLogin;
+	private JTextField User;
+	private JPasswordField Pass;
+	private Connection conn=null;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Login_System window = new Login_System();
+					window.frmLogin.setTitle("LOGIN PAGE");
+					window.frmLogin.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Login_System() {
+		
+		try {
+			String url = "jdbc:mysql://127.0.0.1:3306/account_managment_system";
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			conn = DriverManager.getConnection(url,"root","");
+			
+		} catch (Exception E) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Something Went Worng");
+			//System.out.println(E);
+		}
+			initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize(){
+		
+		frmLogin = new JFrame();
+		frmLogin.setTitle("Login");
+		frmLogin.setResizable(false);
+		frmLogin.getContentPane().setBackground(Color.BLACK);
+		frmLogin.setBounds(100, 100, 616, 468);
+		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(139, 11, 451, 407);
+		panel_1.setBackground(new Color(0, 153, 255));
+		panel_1.setLayout(null);
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("/4.png"));
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(14, 121, 422, 7);
+		panel_1.add(separator);
+		
+		JLabel lblNewLabel = new JLabel("Username");
+		lblNewLabel.setForeground(Color.BLACK);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(87, 151, 70, 23);
+		panel_1.add(lblNewLabel);
+		
+		User = new JTextField();
+		User.setHorizontalAlignment(SwingConstants.CENTER);
+		User.setBounds(202, 151, 167, 23);
+		panel_1.add(User);
+		User.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Password");
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(87, 208, 70, 23);
+		panel_1.add(lblNewLabel_1);
+		
+		Pass = new JPasswordField();
+		Pass.setHorizontalAlignment(SwingConstants.CENTER);
+		Pass.setBounds(202, 208, 167, 23);
+		panel_1.add(Pass);
+		
+		JButton btnNewButton = new JButton("RESET");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User.setText(null);
+				Pass.setText(null);
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(179, 304, 91, 36);
+		panel_1.add(btnNewButton);
+		
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e)  {
+				
+//For username & Password Login
+				
+				String name=User.getText();
+				String password=Pass.getText();
+				int flag=0;
+				try {
+					String sql = "SELECT `username` , `newpassword` FROM `register` WHERE 1";
+					Statement statement=  conn.createStatement();
+					ResultSet result = statement.executeQuery(sql);
+					while(result.next()) {
+						String uname = result.getString("username");
+						String pass = result.getString("newpassword");
+						if(uname.equals(name) && pass.equals(password))
+						{
+							flag=1;
+							JOptionPane.showMessageDialog(null, "Login Successfully..!");
+							Choice choice = new Choice();
+							frmLogin.setVisible(false);
+							choice.setVisible(true);
+							
+						}	
+					}
+					if(flag==0) {
+						JOptionPane.showMessageDialog(null, "Invalid Username Or Password..!");
+						User.setText(null);
+						Pass.setText(null);
+					}
+				}catch (Exception e1){
+					
+					JOptionPane.showMessageDialog(null,e1);
+				}
+				
+			}
+		});
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnLogin.setBounds(314, 304, 91, 36);
+		panel_1.add(btnLogin);
+		
+		JButton btnRegister = new JButton("REGISTER");
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Register reg = new Register();
+				reg.setVisible(true);
+				frmLogin.setVisible(false);
+			}
+			
+			
+		});
+		btnRegister.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnRegister.setBounds(44, 304, 91, 36);
+		panel_1.add(btnRegister);
+		
+		JLabel lblNewLabel_2 = new JLabel("LOGIN SYSTEM");
+		lblNewLabel_2.setForeground(SystemColor.activeCaptionText);
+		lblNewLabel_2.setFont(new Font("Impact", Font.BOLD, 40));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(39, 26, 372, 83);
+		panel_1.add(lblNewLabel_2);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(14, 267, 422, 7);
+		panel_1.add(separator_1);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 580, 407);
+		panel.setBackground(SystemColor.controlShadow);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		ImageIcon icon_1 =new ImageIcon(this.getClass().getResource("/12.png"));
+		lblNewLabel_4.setIcon(icon_1);
+		lblNewLabel_4.setBounds(0, 0, 130, 407);
+		panel.add(lblNewLabel_4);
+		frmLogin.getContentPane().setLayout(null);
+		frmLogin.getContentPane().add(panel_1);
+		
+		JLabel click = new JLabel("Forget Password...!");
+		click.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Forget_P N_pass = new Forget_P();
+				frmLogin.setVisible(false);
+				N_pass.setVisible(true);
+			}
+		});
+		click.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				click.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				
+			}
+		});
+		click.setFont(new Font("Tahoma", Font.BOLD, 12));
+		click.setBounds(202, 242, 167, 14);
+		panel_1.add(click);
+		
+		JLabel click_1 = new JLabel("Forget Username...!");
+		click_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Forget_U N_user = new Forget_U();
+				frmLogin.setVisible(false);
+				N_user.setVisible(true);
+			}
+		});
+		click_1.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				click_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			}
+		});
+		click_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		click_1.setBounds(202, 185, 167, 14);
+		panel_1.add(click_1);
+		
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(0, 0, 451, 407);
+		lblNewLabel_3.setIcon(icon);
+		panel_1.add(lblNewLabel_3);
+		frmLogin.getContentPane().add(panel);
+	}
+}

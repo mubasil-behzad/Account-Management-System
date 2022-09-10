@@ -1,0 +1,156 @@
+package Login_Sys;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import java.awt.Font;
+import javax.swing.JSeparator;
+import javax.swing.JButton;
+import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Student_Login extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField S_name;
+	private JTextField S_pass;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Student_Login frame = new Student_Login();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
+	/**
+	 * Create the frame.
+	 */
+	public Student_Login() {
+		setTitle("Student Login");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 616, 468);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 580, 407);
+		panel.setBackground(SystemColor.controlShadow);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(0, 0, 140, 407);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		ImageIcon icon1 = new ImageIcon(this.getClass().getResource("/12.png"));
+		lblNewLabel.setIcon(icon1);
+		panel.add(lblNewLabel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(140, 0, 440, 407);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
+		ImageIcon icon= new ImageIcon(this.getClass().getResource("/4.png"));
+		
+		S_name = new JTextField();
+		S_name.setBounds(202, 151, 167, 23);
+		panel_1.add(S_name);
+		S_name.setColumns(10);
+		
+		S_pass = new JTextField();
+		S_pass.setBounds(202, 192, 167, 23);
+		panel_1.add(S_pass);
+		S_pass.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Username");
+		lblNewLabel_2.setForeground(Color.BLACK);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2.setBounds(87, 151, 70, 23);
+		panel_1.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Password");
+		lblNewLabel_3.setForeground(Color.BLACK);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_3.setBounds(87, 192, 70, 23);
+		panel_1.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("STUDENT LOGIN");
+		lblNewLabel_4.setForeground(Color.BLACK);
+		lblNewLabel_4.setFont(new Font("Impact", Font.BOLD, 40));
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setBounds(39, 26, 372, 83);
+		panel_1.add(lblNewLabel_4);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 120, 422, 7);
+		panel_1.add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(10, 265, 422, 7);
+		panel_1.add(separator_1);
+		
+		JButton btnNewButton = new JButton("RESET");
+		btnNewButton.setBackground(Color.LIGHT_GRAY);
+		btnNewButton.setForeground(Color.BLACK);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				S_name.setText(null);
+				S_pass.setText(null);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(86, 304, 91, 36);
+		panel_1.add(btnNewButton);
+		
+		JButton btnLogin = new JButton("LOGIN");
+		btnLogin.setForeground(Color.BLACK);
+		btnLogin.setBackground(Color.LIGHT_GRAY);
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name=S_name.getText();
+				String Pass=S_pass.getText();
+				
+			}
+		});
+		btnLogin.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnLogin.setBounds(263, 304, 91, 36);
+		panel_1.add(btnLogin);
+		
+		JLabel lblNewLabel_5 = new JLabel("Click Here For ' REGISTER '");
+		lblNewLabel_5.setForeground(UIManager.getColor("CheckBox.darkShadow"));
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_5.setBounds(119, 365, 202, 31);
+		panel_1.add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(0, 0, 440, 407);
+		lblNewLabel_1.setIcon(icon);
+		panel_1.add(lblNewLabel_1);
+		contentPane.add(panel);
+	}
+}

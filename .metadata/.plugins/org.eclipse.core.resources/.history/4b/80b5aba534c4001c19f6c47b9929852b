@@ -1,0 +1,195 @@
+package Login_Sys;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+
+public class Register extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField F_name;
+	private JTextField L_name;
+	private JTextField User_N;
+	private JPasswordField Pass_W;
+	private Connection conn=null;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Register frame = new Register();
+					frame.setTitle("Register");
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Register() {
+		
+		setTitle("Register ");
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 616, 468);
+		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		try {
+			String url = "jdbc:mysql://127.0.0.1:3306/account_managment_system";
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			conn = DriverManager.getConnection(url,"root","");
+			
+		} catch (Exception E) {
+			// TODO Auto-generated catch block
+			throw new RuntimeException("Something Went Worng");
+			//System.out.println(E);
+		}
+		
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 11, 580, 407);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(79, 121, 422, 7);
+		panel.add(separator);
+		
+		JLabel lblNewLabel = new JLabel("First Name");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(21, 155, 76, 28);
+		panel.add(lblNewLabel);
+		
+		F_name = new JTextField();
+		F_name.setBounds(123, 155, 135, 28);
+		panel.add(F_name);
+		F_name.setColumns(10);
+		
+		JLabel lblLastName = new JLabel("Last Name");
+		lblLastName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLastName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblLastName.setBounds(282, 155, 76, 28);
+		panel.add(lblLastName);
+		
+		L_name = new JTextField();
+		L_name.setColumns(10);
+		L_name.setBounds(403, 155, 135, 28);
+		panel.add(L_name);
+		
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUsername.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblUsername.setBounds(21, 253, 76, 28);
+		panel.add(lblUsername);
+		
+		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPassword.setBounds(282, 253, 76, 28);
+		panel.add(lblPassword);
+		
+		User_N = new JTextField();
+		User_N.setColumns(10);
+		User_N.setBounds(123, 253, 135, 28);
+		panel.add(User_N);
+		
+		Pass_W = new JPasswordField();
+		Pass_W.setBounds(403, 253, 135, 28);
+		panel.add(Pass_W);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(79, 318, 422, 7);
+		panel.add(separator_1);
+		
+		JButton btnNewButton = new JButton("REGISTER");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String u_name=User_N.getText();
+				String P_word=Pass_W.getText();
+				String First_name=F_name.getText();
+				String Last_name=L_name.getText();
+				String sql = "INSERT INTO `register`(`FirstName`, `LastName`, `username`, `newpassword`) VALUES (?,?,?,?)";
+				try {
+					PreparedStatement preparedStatement =conn.prepareStatement(sql);
+					preparedStatement.setString(1, First_name);
+					preparedStatement.setString(2, Last_name);
+					preparedStatement.setString(3, u_name);
+					preparedStatement.setString(4, P_word);
+					int rows = preparedStatement.executeUpdate();
+					if(rows>0){
+						JOptionPane.showMessageDialog(null, "Register Successfully..!");
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1);
+				}
+				Login_System login=new Login_System();
+				//JOptionPane.showMessageDialog(null, "Register Successfully..!");	
+				login.main(null);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setBounds(403, 351, 89, 28);
+		panel.add(btnNewButton);
+		
+		JButton btnReset = new JButton("RESET");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				User_N.setText(null);
+				Pass_W.setText(null);
+				F_name.setText(null);
+				L_name.setText(null);
+			}
+		});
+		btnReset.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnReset.setBounds(123, 351, 89, 28);
+		panel.add(btnReset);
+		
+		JLabel lblNewLabel_1 = new JLabel("REGISTRATION");
+		lblNewLabel_1.setFont(new Font("Impact", Font.BOLD, 40));
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(137, 43, 305, 52);
+		panel.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(0, 0, 580, 407);
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("/5.png"));
+		lblNewLabel_2.setIcon(icon);
+		panel.add(lblNewLabel_2);
+	}
+
+}

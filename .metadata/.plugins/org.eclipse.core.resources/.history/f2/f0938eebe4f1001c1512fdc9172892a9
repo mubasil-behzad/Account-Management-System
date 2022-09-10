@@ -1,0 +1,247 @@
+package Login_Sys;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import java.awt.Color;
+import javax.swing.JTextField;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+
+public class Teacher_Register extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JPasswordField passwordField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Teacher_Register frame = new Teacher_Register();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Teacher_Register() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 1366, 768);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 1340, Short.MAX_VALUE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+		);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		
+		JLabel lblTeachersRegister = new JLabel("TEACHER'S  REGISTER");
+		lblTeachersRegister.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTeachersRegister.setFont(new Font("Impact", Font.BOLD, 40));
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		
+		JComboBox Dep = new JComboBox();
+		Dep.setFont(new Font("Tahoma", Font.BOLD, 9));
+		Dep.setEditable(true);
+		Dep.setBackground(Color.LIGHT_GRAY);
+		Dep.setBounds(202, 413, 115, 22);
+		panel_1.add(Dep);
+		
+		JComboBox Deg = new JComboBox();
+		Deg.setFont(new Font("Tahoma", Font.BOLD, 9));
+		Deg.setEditable(true);
+		Deg.setBackground(Color.LIGHT_GRAY);
+		Deg.setBounds(202, 326, 115, 22);
+		panel_1.add(Deg);
+		
+		JLabel lblNewLabel_2 = new JLabel("First name");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2.setBounds(61, 65, 80, 22);
+		panel_1.add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(202, 65, 115, 22);
+		panel_1.add(textField);
+		
+		JLabel lblNewLabel_2_2 = new JLabel("Personal Email");
+		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_2.setBounds(61, 152, 99, 22);
+		panel_1.add(lblNewLabel_2_2);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(202, 152, 115, 22);
+		panel_1.add(textField_1);
+		
+		JLabel lblNewLabel_2_3 = new JLabel("Phone #");
+		lblNewLabel_2_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_3.setBounds(61, 239, 80, 22);
+		panel_1.add(lblNewLabel_2_3);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(202, 239, 115, 22);
+		panel_1.add(textField_2);
+		
+		JLabel lblNewLabel_2_3_1 = new JLabel("Degree");
+		lblNewLabel_2_3_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_3_1.setBounds(61, 326, 80, 22);
+		panel_1.add(lblNewLabel_2_3_1);
+		
+		JLabel lblNewLabel_2_3_1_1 = new JLabel("Department");
+		lblNewLabel_2_3_1_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_3_1_1.setBounds(61, 413, 90, 22);
+		panel_1.add(lblNewLabel_2_3_1_1);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setBounds(25, 92, 327, 319);
+		ImageIcon icon = new ImageIcon(this.getClass().getResource("/13_1.png"));
+		lblNewLabel_1.setIcon(icon);
+		panel_1_1.add(lblNewLabel_1);
+		
+		JPanel panel_1_2 = new JPanel();
+		panel_1_2.setLayout(null);
+		
+		JLabel lblNewLabel_2_4 = new JLabel("Last name");
+		lblNewLabel_2_4.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_4.setBounds(61, 65, 80, 22);
+		panel_1_2.add(lblNewLabel_2_4);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(202, 65, 115, 22);
+		panel_1_2.add(textField_3);
+		
+		JLabel lblNewLabel_2_5 = new JLabel("Gender");
+		lblNewLabel_2_5.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_5.setBounds(61, 153, 80, 22);
+		panel_1_2.add(lblNewLabel_2_5);
+		
+		JLabel lblNewLabel_2_6 = new JLabel("Address");
+		lblNewLabel_2_6.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_6.setBounds(61, 239, 80, 22);
+		panel_1_2.add(lblNewLabel_2_6);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(202, 239, 115, 22);
+		panel_1_2.add(textField_4);
+		
+		JLabel lblNewLabel_2_6_1 = new JLabel("Date Of Birth");
+		lblNewLabel_2_6_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_6_1.setBounds(61, 328, 90, 22);
+		panel_1_2.add(lblNewLabel_2_6_1);
+		
+		JDateChooser BirthDate = new JDateChooser();
+		BirthDate.getCalendarButton().setBackground(Color.LIGHT_GRAY);
+		BirthDate.setBackground(Color.LIGHT_GRAY);
+		BirthDate.setBounds(202, 328, 115, 22);
+		panel_1_2.add(BirthDate);
+		
+		JRadioButton maleB = new JRadioButton("Male");
+		maleB.setFont(new Font("Tahoma", Font.BOLD, 11));
+		maleB.setBounds(184, 152, 53, 22);
+		panel_1_2.add(maleB);
+		
+		JRadioButton femaleB = new JRadioButton("Female");
+		femaleB.setFont(new Font("Tahoma", Font.BOLD, 11));
+		femaleB.setBounds(239, 152, 67, 22);
+		panel_1_2.add(femaleB);
+		
+		JRadioButton otherB = new JRadioButton("Other");
+		otherB.setFont(new Font("Tahoma", Font.BOLD, 11));
+		otherB.setBounds(309, 152, 59, 22);
+		panel_1_2.add(otherB);
+		
+		JButton Reg = new JButton("Register");
+		Reg.setForeground(Color.BLACK);
+		Reg.setFont(new Font("Tahoma", Font.BOLD, 11));
+		Reg.setBackground(Color.LIGHT_GRAY);
+		Reg.setBounds(279, 465, 89, 28);
+		panel_1_2.add(Reg);
+		
+		JLabel lblNewLabel_2_6_2 = new JLabel("Password");
+		lblNewLabel_2_6_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2_6_2.setBounds(61, 413, 80, 22);
+		panel_1_2.add(lblNewLabel_2_6_2);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(202, 413, 115, 22);
+		panel_1_2.add(passwordField);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(452)
+					.addComponent(lblTeachersRegister, GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+					.addGap(452))
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+					.addGap(83)
+					.addComponent(panel_1_1, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+					.addGap(84)
+					.addComponent(panel_1_2, GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+					.addGap(10))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(91)
+					.addComponent(lblTeachersRegister)
+					.addGap(44)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 504, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_1_1, GroupLayout.PREFERRED_SIZE, 504, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panel_1_2, GroupLayout.PREFERRED_SIZE, 504, GroupLayout.PREFERRED_SIZE)))
+		);
+		panel.setLayout(gl_panel);
+		contentPane.setLayout(gl_contentPane);
+	}
+}
